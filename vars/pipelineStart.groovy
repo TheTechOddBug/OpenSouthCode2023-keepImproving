@@ -51,7 +51,7 @@ def call() {
       stage ("Pipeline Assembly"){
         steps {
           script {
-            git env.PROJECT_REPO
+            git branch: 'main', url: env.PROJECT_REPO
             addedPipelineStagesDef.each { entry ->
               if (entry.value.size() == 2) {
                 stage("${entry.value[0]}") {
