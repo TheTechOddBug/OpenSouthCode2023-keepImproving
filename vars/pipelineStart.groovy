@@ -70,34 +70,10 @@ def call() {
       }
       unsuccessful {
         postUnsuccesfulStep()
-        // script {
-        //   echo "PIPELINE_FINISHED:  UNSUCCESSFUL"
-        //   if(esSMCanAbandonChange()) {
-        //     env.ABANDONED = inputUser('Do you want change status to abandoned in SM?', env.QUESTION_TIMEOUT, InputType.CHOICE, ['yes', 'no'])
 
-        //     if ('yes'.equals(env.ABANDONED)) {
-        //       esSMAbandonChange(env.PROJECT)
-        //       echo "ABANDON_SM: ABANDON_UNSUCCESS"
-        //     }
-        //   }
-        // }
       }
       failure {
         postFailureStep()
-        // echo "PIPELINE_FINISHED:  FAILURE"
-        // echo '--failure--'
-        // script {
-        //   GIT_COMMIT_EMAIL = sh(
-        //           script: 'git --no-pager show -s --format=\'%ae\'',
-        //           returnStdout: true
-        //   ).trim()
-        //   echo "DESTINATARIO ${GIT_COMMIT_EMAIL}"
-        //   if (isDevOpsTestingRepo()) {
-        //   printlnVerbose('################################################################################################################################################################################################ Esta ejecución corresponde a una aplicación de prueba y, por lo tanto, se simula el envío de email de error.', verbose:'ON')
-        //   } else {
-        //     sendFailureEmail GIT_COMMIT_EMAIL
-        //   }
-        // }
       }
       cleanup {
         postCleanupStep()
