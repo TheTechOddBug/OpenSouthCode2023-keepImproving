@@ -31,6 +31,8 @@ def call() {
   addedPipelineStagesDef.putAll(aProjectCICDDef.get('projectPipelineStagesDef'))
   addedPipelineStagesDef.sort()
 
+  def repoToUse = 'https://github.com/TheTechOddBug/OpenSouthCode2023-Type1ProjectA.git'
+
   pipeline {
     agent any
 
@@ -43,6 +45,7 @@ def call() {
 
     environment {
       AN_ENVIRONMENT_VARIABLE = 'ExampleEnvVar'
+      REPO_TO_USE = ${repoToUse}
     }
 
     stages {
