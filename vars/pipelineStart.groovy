@@ -3,6 +3,7 @@
 def call() {
 
   def aProjectCICDDef = projectCICDDef.getProjectInfo()
+  def aProjectRepo = aProjectCICDDef.get('projectRepo')
 
 
   def pipelineType1StagesDef = [
@@ -31,8 +32,6 @@ def call() {
   addedPipelineStagesDef.putAll(aProjectCICDDef.get('projectPipelineStagesDef'))
   addedPipelineStagesDef.sort()
 
-  def repoToUse = 'https://github.com/TheTechOddBug/OpenSouthCode2023-Type1ProjectA.git'
-
   pipeline {
     agent any
 
@@ -45,13 +44,14 @@ def call() {
 
     environment {
       AN_ENVIRONMENT_VARIABLE = 'ExampleEnvVar'
-      REPO_TO_USE = "${repoToUse}"
+      PROJECT_REPO = "${aProjectRepo}"
     }
 
     stages {
       stage ("Pipeline Assembly"){
         steps {
           script {
+            git env.PROJECT_REPO
             addedPipelineStagesDef.each { entry ->
               if (entry.value.size() == 2) {
                 stage("${entry.value[0]}") {
