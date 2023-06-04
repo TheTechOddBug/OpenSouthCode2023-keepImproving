@@ -45,7 +45,7 @@ def call() {
 
     environment {
       AN_ENVIRONMENT_VARIABLE = 'ExampleEnvVar'
-      REPO_TO_USE = ${repoToUse}
+      REPO_TO_USE = "${repoToUse}"
     }
 
     stages {
